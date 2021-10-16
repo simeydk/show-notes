@@ -1,71 +1,28 @@
-import util from 'util';
-import child_process from 'child_process'
-import {promises as fs} from 'fs'
-const exec = util.promisify(child_process.exec);
+import { URL } from 'url';
 
-import fetch  from 'node-fetch'
+import { getMarkdownLinksWithLineNumber } from './utils/markdown.js';
+import { glob, readFileString} from './utils/files.js';
+import { asyncForEach, asyncMap} from './utils/asyncArray.js'
+import { safeFetch } from './utils/safeFetch.js';
 
-
-// Perform multiple rounds of replaces on a string
-function applyReplaces(text) {
-    return REPLACES.reduce((prev, [a, b]) => prev.replace(a, b), text)
-}
-
-// Returns an array of the filenames of all the episodes
-async function getMarkdown() {
-    const { stdout } = await exec('find **/*.md')
-    return stdout
-        .split('\n') // make an array
-        .filter(x => x.endsWith('.md')) // remove blanks
-}
-
-// Read a textfile to a string, pass the string through processor, and write the results out to a file
-async function processFile(filename, processor, newname = '') {
-    const inText = await fs.readFile(filename).then(buffer => buffer.toString())
-    const outText = processor(inText)
-    if (outText != inText) {
-        await fs.writeFile(newname || filename, outText)
-    }
-}
-
-function getMarkdownLinks(mdString) {
-    // Credit: https://davidwells.io/snippets/regex-match-markdown-links
-    const regexMdLinks = /\[([^\[]+)\](\([\S]*\))/gm
-    const matches = mdString.match(regexMdLinks)
-    const singleMatch = /\[([^\[]+)\]\((.*)\)/
-    if(!matches) return []
-    return matches.map(match => {
-        const [text, word, link] = singleMatch.exec(match)
-        return {text, word, link}
-    })
-    // matches.forEach(match => console.log(match))
-}
-
+main()
 
 async function main() {
-    const notes = await getMarkdown()
-    notes.slice(100,200).forEach(async (filename, i) => {
-        const text = await fs.readFile(filename).then(buffer => buffer.toString())
-        const links = getMarkdownLinks(text)
-        links.forEach(async ({text, word, link}) => {
-            let response
-            try {
-                response = await fetch(link)
-            } catch {
-                response = {status: '???'}
-            }
-            if (response.status !== 200) {
-                const mark = response.status === 200 ? '   ': '>>>'
-                console.log(response.status, mark, link, `(${filename})`)
-            } 
-        })
-        // processFile(filename, applyReplaces)
-    })
+    const filenames = await glob('**/*.md')
+    const links = await asyncMap(filenames, getLinks).then(arr => arr.flat())
+    const brokenLinks = links.filter(x => x.status !== 200)
+    console.log(brokenLinks)
 }
 
- 
-// if (esMain(import.meta)) {
-if (true) {
-    main();
-  // Module run directly.
+async function getLinks(filename) {
+    const text = await readFileString(filename)
+    const links = getMarkdownLinksWithLineNumber(text)
+    await asyncForEach(links, async link => {
+        link.filename = filename
+        link.protocol = new URL(link.link).protocol
+        link.status = link.protocol === 'mailto:' ? '' : await safeFetch(link.link).then(x => x.status)
+        console.log(link)
+        return link
+    })
+    return links
 }
