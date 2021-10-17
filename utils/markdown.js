@@ -6,8 +6,8 @@ export function getMarkdownLinks(mdString) {
     if (!matches)
         return [];
     return matches.map(match => {
-        const [markdown, text, link] = singleMatch.exec(match);
-        return { markdown, text, link };
+        const [markdown, text, url] = singleMatch.exec(match);
+        return { markdown, text, url };
     });
 }
 

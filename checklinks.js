@@ -5,38 +5,43 @@ import { glob, readFileString} from './utils/files.js';
 import { asyncForEach, asyncMap} from './utils/asyncArray.js'
 import { safeFetch } from './utils/safeFetch.js';
 
-
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-    Array.from(process.argv).forEach((arg, i) => console.log(`${i} - ${arg}`) )
-main()
+if (fileURLToPath(import.meta.url).startsWith(process.argv[1])) {
+    const pattern = process.argv[2] || '**/*.md'
+    main(pattern)
 }
 
-async function main() {
-    const filenames = await glob('**/*.md')
-    const links = await asyncMap(filenames, getLinks).then(arr => arr.flat())
+async function main(globPattern = '**/*.md') {
+
+    const filenames = await glob(globPattern)
+    console.log('Running the following files:')
+    console.log('----------------------------')
+    console.log(filenames.join('\n') + '\n')
+    const links = await asyncMap(filenames, getLinksFromMdFile).then(arr => arr.flat())
+    await asyncForEach(links, async link => Object.assign(link, await checkLink(link.url)))
     const brokenLinks = links.filter(x => !x.ok)
-    console.log(brokenLinks.map(({filename, status, link}) => `${status} ${filename}  ${link}`).join('\n'))
+    console.log(brokenLinks.map(({filename, status, url}) => `${status} ${filename}  ${url}`).join('\n'))
     console.log(brokenLinks.length , links.length )
 }
 
-async function getLinks(filename) {
+export async function checkLink(url) {
+    let protocol = '', status, ok = false
+    try {
+        protocol = new URL(url).protocol
+    }
+    catch (e) {}
+
+    if (protocol !== 'mailto') {
+        if (protocol == '') url = 'https://' + url // Do we wwant to make protocol mandatory in the link?
+        const response = await safeFetch(url)
+        status = response.status
+        ok = response.ok
+    }
+    return {status, ok, protocol}
+}
+
+async function getLinksFromMdFile(filename) {
     const text = await readFileString(filename)
     const links = getMarkdownLinksWithLineNumber(text)
-    await asyncForEach(links, async link => {
-        link.filename = filename
-        try {
-        link.protocol = new URL(link.link).protocol
-        }
-        catch {
-            link.protocol = ''
-        }
-
-        if (link.protocol !== 'mailto') {
-            const response = await safeFetch(link.link)
-            link.status = response.status
-            link.ok = response.ok
-        }
-        return link
-    })
+    links.forEach(link => link.filename = filename)
     return links
 }

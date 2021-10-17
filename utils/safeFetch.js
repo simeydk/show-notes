@@ -1,15 +1,21 @@
-import fetch from 'node-fetch';
+import {fileURLToPath} from 'url'
 
-export async function safeFetch(url) {
+import fetch, {Headers} from 'node-fetch';
+
+export async function safeFetch(url, ...args) {
     let response;
     try {
-        response = await fetch(
-            url,
-            { headers: new Headers({ 
-                "User-Agent": "Mozilla/5.0 (Windows NT x.y; Win64; x64; rv:10.0) Gecko/20100101 Firefox/10.0" }) 
-            });
+        response = await fetch(url,...args)
     } catch (e) {
         response = { status: -1, ok: false };
     }
     return response;
+}
+
+
+if (fileURLToPath(import.meta.url).startsWith(process.argv[1])) {
+    const url = process.argv[2]
+    if (url) {
+        console.log(await safeFetch(url))
+    }
 }
