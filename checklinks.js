@@ -1,4 +1,4 @@
-import { URL } from 'url';
+import { URL, fileURLToPath } from 'url';
 
 import { getMarkdownLinksWithLineNumber } from './utils/markdown.js';
 import { glob, readFileString} from './utils/files.js';
