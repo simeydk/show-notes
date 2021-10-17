@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/simeydk/show-notes#readme",
   "dependencies": {
+    "check-links": "^1.1.8",
     "node-fetch": "^3.0.0"
   }
 }
