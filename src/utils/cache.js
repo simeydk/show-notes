@@ -6,18 +6,32 @@ import { clear } from 'console';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-export async function withLowCache(fn, dbName, TTLms = 3600_000) {
+export async function withLowCache(fn, dbName, TTLms = 3600_000, saveFreq = 10000) {
     if (!(dbName.includes('/') || dbName.includes('\\'))) {
         dbName = join(__dirname, dbName) 
     }
 
+
+
+
     const db = new Low(new JSONFile(dbName))
     await db.read()
+    
 
     if (!db.data) {
         db.data = {}
     } else {
         flush()
+    }
+    
+    if (saveFreq) {
+        db.dirty = false
+        db.saver = setInterval(() => {
+            if (db.dirty) {
+                db.write()
+                db.dirty = false
+            }
+        }, saveFreq)
     }
 
     async function cachedFn(...args) {
@@ -30,7 +44,7 @@ export async function withLowCache(fn, dbName, TTLms = 3600_000) {
         } else {
             const result = await fn(...args)
             db.data[key] = {value: result, time: Date.now()}
-            db.write()
+            saveFreq ? db.dirty = true : db.write()
             return result
         }
     }
