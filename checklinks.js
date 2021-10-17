@@ -19,9 +19,18 @@ async function getLinks(filename) {
     const links = getMarkdownLinksWithLineNumber(text)
     await asyncForEach(links, async link => {
         link.filename = filename
+        try {
         link.protocol = new URL(link.link).protocol
-        link.status = link.protocol === 'mailto:' ? '' : await safeFetch(link.link).then(x => x.status)
-        console.log(link)
+        }
+        catch {
+            link.protocol = ''
+        }
+
+        if (link.protocol !== 'mailto') {
+            const response = await safeFetch(link.link)
+            link.status = response.status
+            link.ok = response.ok
+        }
         return link
     })
     return links
