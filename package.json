@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/simeydk/show-notes#readme",
   "dependencies": {
+    "abort-controller": "^3.0.0",
     "lowdb": "^3.0.0",
     "node-fetch": "^3.0.0"
   }
