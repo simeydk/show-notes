@@ -11055,14 +11055,6 @@
     },
     "time": 1634491736844
   },
-  "[\"Whichbeardisthis.com\"]": {
-    "value": {
-      "status": 200,
-      "ok": true,
-      "protocol": ""
-    },
-    "time": 1634491736850
-  },
   "[\"https://redwoodjs.com\"]": {
     "value": {
       "status": 200,
@@ -82526,5 +82518,109 @@
       "protocol": "https:"
     },
     "time": 1634497251808
+  },
+  "[\"Whichbeardisthis.com\"]": {
+    "value": {
+      "status": -1,
+      "ok": false,
+      "protocol": ""
+    },
+    "time": 1634498877382
+  },
+  "[\"https://www.fastify.io/\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634498877806
+  },
+  "[\"https://getpino.io/#/\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634498878172
+  },
+  "[\"https://changelog.com/jsparty/103\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634498878217
+  },
+  "[\"https://maven.apache.org/what-is-maven.html\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634498878542
+  },
+  "[\"https://koajs.com\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634498878723
+  },
+  "[\"https://github.com/delvedor/find-my-way\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634498879038
+  },
+  "[\"https://www.nearform.com/careers/\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634498880153
+  },
+  "[\"https://www.nodetodo.org\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634498880922
+  },
+  "[\"https://github.com/fastify/avvio\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634498881560
+  },
+  "[\"https://nodeland.dev/\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634498881764
+  },
+  "[\"https://www.nodeconfremote.com\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634498881986
+  },
+  "[\"https://docs.nestjs.com/techniques/performance#performance-fastify\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634498882796
   }
 }
