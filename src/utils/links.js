@@ -12,8 +12,6 @@ export async function checkLink(url) {
     catch (e) { }
 
     if (protocol !== 'mailto') {
-        if (protocol == '')
-            url = 'https://' + url; // Do we wwant to make protocol mandatory in the link?
         const response = await safeFetch(url, { method: 'HEAD' });
         status = response.status;
         ok = response.ok;
