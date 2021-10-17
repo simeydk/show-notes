@@ -1,6 +1,6 @@
 import {fileURLToPath} from 'url'
 
-import fetch, {Headers} from 'node-fetch';
+import fetch from 'node-fetch';
 
 export async function safeFetch(url, ...args) {
     let response;

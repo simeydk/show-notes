@@ -5,6 +5,7 @@
   "main": "checklinks.js",
   "type": "module",
   "scripts": {
+    "checklinks": "node src/checklinks.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/simeydk/show-notes#readme",
   "dependencies": {
+    "lowdb": "^3.0.0",
     "node-fetch": "^3.0.0"
   }
 }
