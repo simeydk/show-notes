@@ -18,6 +18,7 @@ export async function checkLink(url) {
     }
     return { status, ok, protocol };
 }
+
 export async function getLinksFromMdFile(filename) {
     const text = await readFileString(filename);
     const links = getMarkdownLinksWithLineNumber(text);

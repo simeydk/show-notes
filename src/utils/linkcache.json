@@ -76143,14 +76143,6 @@
     },
     "time": 1634497012229
   },
-  "[\"https://try.sajari.com/changelog\"]": {
-    "value": {
-      "status": 404,
-      "ok": false,
-      "protocol": "https:"
-    },
-    "time": 1634497012517
-  },
   "[\"https://simplynuc.com/9i7QNX-full/\"]": {
     "value": {
       "status": 200,
@@ -76191,14 +76183,6 @@
     },
     "time": 1634497016515
   },
-  "[\"https://www.linkedin.com/company/snorkel-ai\"]": {
-    "value": {
-      "status": 999,
-      "ok": false,
-      "protocol": "https:"
-    },
-    "time": 1634497016541
-  },
   "[\"https://blogs.microsoft.com/ai/azure-image-captioning\"]": {
     "value": {
       "status": 200,
@@ -76215,14 +76199,6 @@
     },
     "time": 1634497017032
   },
-  "[\"https://snorkel.ai\"]": {
-    "value": {
-      "status": 200,
-      "ok": true,
-      "protocol": "https:"
-    },
-    "time": 1634497017226
-  },
   "[\"https://www.americanexpress.com/in/careers/ai-labs.html#research\"]": {
     "value": {
       "status": 200,
@@ -76238,14 +76214,6 @@
       "protocol": "https:"
     },
     "time": 1634497017380
-  },
-  "[\"https://practicalai.fm/103\"]": {
-    "value": {
-      "status": 200,
-      "ok": true,
-      "protocol": "https:"
-    },
-    "time": 1634497017423
   },
   "[\"https://practicalai.fm/85\"]": {
     "value": {
@@ -82519,38 +82487,6 @@
     },
     "time": 1634497251808
   },
-  "[\"Whichbeardisthis.com\"]": {
-    "value": {
-      "status": -1,
-      "ok": false,
-      "protocol": ""
-    },
-    "time": 1634498877382
-  },
-  "[\"https://www.fastify.io/\"]": {
-    "value": {
-      "status": 200,
-      "ok": true,
-      "protocol": "https:"
-    },
-    "time": 1634498877806
-  },
-  "[\"https://getpino.io/#/\"]": {
-    "value": {
-      "status": 200,
-      "ok": true,
-      "protocol": "https:"
-    },
-    "time": 1634498878172
-  },
-  "[\"https://changelog.com/jsparty/103\"]": {
-    "value": {
-      "status": 200,
-      "ok": true,
-      "protocol": "https:"
-    },
-    "time": 1634498878217
-  },
   "[\"https://maven.apache.org/what-is-maven.html\"]": {
     "value": {
       "status": 200,
@@ -82622,5 +82558,69 @@
       "protocol": "https:"
     },
     "time": 1634498882796
+  },
+  "[\"Whichbeardisthis.com\"]": {
+    "value": {
+      "status": -1,
+      "ok": false,
+      "protocol": ""
+    },
+    "time": 1634500707336
+  },
+  "[\"https://www.fastify.io/\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634500707760
+  },
+  "[\"https://getpino.io/#/\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634500708148
+  },
+  "[\"https://changelog.com/jsparty/103\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634500708199
+  },
+  "[\"https://www.linkedin.com/company/snorkel-ai\"]": {
+    "value": {
+      "status": 999,
+      "ok": false,
+      "protocol": "https:"
+    },
+    "time": 1634500780256
+  },
+  "[\"https://snorkel.ai\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634500780884
+  },
+  "[\"https://practicalai.fm/103\"]": {
+    "value": {
+      "status": 200,
+      "ok": true,
+      "protocol": "https:"
+    },
+    "time": 1634500781485
+  },
+  "[\"https://try.sajari.com/changelog\"]": {
+    "value": {
+      "status": 404,
+      "ok": false,
+      "protocol": "https:"
+    },
+    "time": 1634500782822
   }
 }
