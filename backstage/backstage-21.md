@@ -1,5 +1,6 @@
 - [The issue: A GitHub Action to auto-improve transcripts](https://github.com/thechangelog/transcripts/issues/844)
 - [The post: Auto-improved transcripts with GitHub Actions](https://changelog.com/posts/auto-improved-transcripts-with-github-actions)
 - [The script: format.js](https://github.com/thechangelog/transcripts/blob/master/scripts/format.js)
+- [Simey's GitHub action that tweets dad jokes](https://github.com/simeydk/actions/blob/main/.github/workflows/tweet_joke.yml) and [the dad joke twitter account](https://twitter.com/punsplus)
 - [Our survey-game repo](https://github.com/thechangelog/survey-game)
 - [Eric Normand talks FP with us](https://changelog.com/person/ericnormand/podcasts)
